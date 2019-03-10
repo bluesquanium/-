@@ -17,7 +17,7 @@ int Dfs(int here, bool isRoot) {
 	for(int i = 0; i < edge[here].size(); i++) {
 		int next = edge[here][i];
 		
-		if(visited[next]) { // ÀÌÀü¿¡ ¹æ¹®ÇÑ Á¡ÀÏ °æ¿ì 
+		if(visited[next]) { // Ã€ÃŒÃ€Ã¼Â¿Â¡ Â¹Ã¦Â¹Â®Ã‡Ã‘ ÃÂ¡Ã€Ã Â°Ã¦Â¿Ã¬ 
 			ret = min(ret, visited[next]);
 		}
 		else {
