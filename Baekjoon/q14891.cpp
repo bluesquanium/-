@@ -8,16 +8,16 @@ int main(void) {
 	
 	int k, result = 0;
 	string wheel[4];
-	int cur[4] = {0,}; //0: À§, 2:¿À¸¥ÂÊ, 4: ¾Æ·¡, 6:¿ÞÂÊ 
+	int cur[4] = {0,}; //0: ìœ„, 2:ì˜¤ë¥¸ìª½, 4: ì•„ëž˜, 6:ì™¼ìª½ 
 	for(int i = 0; i < 4; i++) {
 		cin >> wheel[i];
 	}
 	cin >> k;
 	for(int j = 0; j < k; j++) {
-		int move[4] = {0,0,0,0}; // 1: ½Ã°è, -1: ¹Ý½Ã°è 
+		int move[4] = {0,0,0,0}; // 1: ì‹œê³„, -1: ë°˜ì‹œê³„ 
 		int command[2];
 		cin >> command[0] >> command[1];
-		command[0]--; // ¹øÈ£ 0¹øºÎÅÍ ½ÃÀÛÇÏ¹Ç·Î 
+		command[0]--; // ë²ˆí˜¸ 0ë²ˆë¶€í„° ì‹œìž‘í•˜ë¯€ë¡œ 
 		move[command[0]] = command[1];
 		
 		for(int i = command[0]; i < 3; i++) {
