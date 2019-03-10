@@ -24,7 +24,7 @@ int Solve(int cur, bool isRoot, int prev) {
 		else {
 			divided_child++;
 			int temp = Solve(next, false, cur);
-			// ÀÌÀü¿¡ ¹æ¹®ÇÑ Á¡ÀÏ °æ¿ì È®ÀÎÇÒ ÇÊ¿ä°¡ ¾ø´Â°Ô, ÀÌÀü¿¡ ¹æ¹®ÇÑ Á¡ÀÌ¸é visited[next] °ªÀÌ ´õ ÀûÀ» °ÍÀÌ±â¿¡ È®ÀÎ ¹«ÀÇ¹Ì
+			// ì´ì „ì— ë°©ë¬¸í•œ ì ì¼ ê²½ìš° í™•ì¸í•  í•„ìš”ê°€ ì—†ëŠ”ê²Œ, ì´ì „ì— ë°©ë¬¸í•œ ì ì´ë©´ visited[next] ê°’ì´ ë” ì ì„ ê²ƒì´ê¸°ì— í™•ì¸ ë¬´ì˜ë¯¸
 			if (temp > is_visited[cur]) {
 				if (cur < next) {
 					ans.push_back({ cur, next });
