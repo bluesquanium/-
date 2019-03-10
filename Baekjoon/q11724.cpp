@@ -27,8 +27,8 @@ int main(void) {
 	//Input
 	int n, m;
 	cin >> n >> m;
-	int parent[n+1]; // 0¹øÀº ´õ¹Ì 
-	for(int i = 1; i < n+1; i++) { // ºÎ¸ğ Á¤º¸ ÃÊ±âÈ­ 
+	int parent[n+1]; // 0ë²ˆì€ ë”ë¯¸ 
+	for(int i = 1; i < n+1; i++) { // ë¶€ëª¨ ì •ë³´ ì´ˆê¸°í™” 
 		parent[i] = i;
 	}
 	for(int i = 0; i < m; i++) {
