@@ -13,28 +13,28 @@ bool compare2(pair<int,int*> a, pair<int,int*> b) {
 	return a.second[2] < b.second[2];
 }
 
-bool compare3(pair<int, pair<int,int> > a, pair<int, pair<int,int> > b) { // ³»¸²Â÷¼øÀ¸·Î Á¤·Ä 
+bool compare3(pair<int, pair<int,int> > a, pair<int, pair<int,int> > b) { // ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ 
 	return a.first > b.first;
 }
 
-//À¯´Ï¿Â ÆÄÀÎµå
+//ìœ ë‹ˆì˜¨ íŒŒì¸ë“œ
 int Find(int x, int* parent){
 
-    // RootÀÎ °æ¿ì x¸¦ ¹İÈ¯
+    // Rootì¸ ê²½ìš° xë¥¼ ë°˜í™˜
     if(x == parent[x]){
         return x;
     }
     else{
-        // ¾Æ´Ï¸é Root¸¦ Ã£¾Æ°¨
+        // ì•„ë‹ˆë©´ Rootë¥¼ ì°¾ì•„ê°
         int p = Find(parent[x], parent);
         parent[x] = p;
         return p;
     }
 }
 
-// x¿Í yÀÇ ¿ø¼Ò°¡ µé¾î¿À¸é
-// °¢°¢ x¿¡´Â µé¾î¿Â xÀÇ Root ³ëµå y¿¡´Â µé¾î¿Â yÀÇ Root ³ëµå¸¦ ÀúÀåÇØ¼­ ºñ±³ÇÏ°í
-// x¿¡ y¸¦ ºÙÀÌ´Â ¹æ½Ä -> yÀÇ Root ³ëµå¸¦ x·Î ¼³Á¤
+// xì™€ yì˜ ì›ì†Œê°€ ë“¤ì–´ì˜¤ë©´
+// ê°ê° xì—ëŠ” ë“¤ì–´ì˜¨ xì˜ Root ë…¸ë“œ yì—ëŠ” ë“¤ì–´ì˜¨ yì˜ Root ë…¸ë“œë¥¼ ì €ì¥í•´ì„œ ë¹„êµí•˜ê³ 
+// xì— yë¥¼ ë¶™ì´ëŠ” ë°©ì‹ -> yì˜ Root ë…¸ë“œë¥¼ xë¡œ ì„¤ì •
 void Union(int x, int y, int* parent){
 
     x = Find(x, parent);
@@ -70,11 +70,11 @@ int main(void) {
 	sort(x_point.begin(), x_point.end(), compare);
 	sort(y_point.begin(), y_point.end(), compare);
 	vector< pair<int, pair<int,int> > > edge;
-	for(int i = 0; i < n-1; i++) { // °Å¸®¿Í ÇÔ²² edgeÀÎ ³ëµåµé ÀúÀå. 
+	for(int i = 0; i < n-1; i++) { // ê±°ë¦¬ì™€ í•¨ê»˜ edgeì¸ ë…¸ë“œë“¤ ì €ì¥. 
 		edge.push_back( make_pair( abs(x_point[i].second-x_point[i+1].second), make_pair(x_point[i].first, x_point[i+1].first) ) );
 		edge.push_back( make_pair( abs(y_point[i].second-y_point[i+1].second), make_pair(y_point[i].first, y_point[i+1].first) ) );
 	}
-	sort(edge.begin(), edge.end(), compare3); // ³»¸²Â÷¼øÀ¸·Î Á¤·Ä 
+	sort(edge.begin(), edge.end(), compare3); // ë‚´ë¦¼ì°¨ìˆœìœ¼ë¡œ ì •ë ¬ 
 	//x_point.clear();
 	//y_point.clear();
 	
@@ -83,11 +83,11 @@ int main(void) {
 		cin >> temp[0] >> temp[1] >> temp[2];
 		query.push_back(make_pair(i, temp));
 		query[i].second[0] -= 1; query[i].second[1] -= 1;
-		//query[i].first = i; // query ¹øÈ£ ÀúÀå 
+		//query[i].first = i; // query ë²ˆí˜¸ ì €ì¥ 
 	}
 	sort(query.begin(), query.end(), compare2);
 
-	int parent[n]; //À¯´Ï¿Â ÆÄÀÎµå 
+	int parent[n]; //ìœ ë‹ˆì˜¨ íŒŒì¸ë“œ 
 	for(int i = 0; i < n; i++) {
 		parent[i] = i;
 	}
