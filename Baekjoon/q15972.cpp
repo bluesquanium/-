@@ -6,7 +6,7 @@ using namespace std;
 int dy[4] = {-1, 0, 1, 0};
 int dx[4] = { 0, 1, 0,-1};
 
-int n, m, h, result, tank[1000][1000][5]; // 0:ºÏ 1: µ¿ 2: ³² 3: ¼­ (½Ã°è¹æÇâ) 
+int n, m, h, result, tank[1000][1000][5]; // 0:ë¶ 1: ë™ 2: ë‚¨ 3: ì„œ (ì‹œê³„ë°©í–¥) 
 vector< pair<int,int> > height[1000];
 
 int main(void) {
@@ -16,7 +16,7 @@ int main(void) {
 	cin >> n >> m >> h;
 	for(int i = 0; i < n; i++)
 	for(int j = 0; j < m; j++)
-		tank[i][j][4] = h; // h·Î ÃÊ±âÈ­  
+		tank[i][j][4] = h; // hë¡œ ì´ˆê¸°í™”  
 	
 	//horizontal
 	for(int j = 0; j < m; j++) { // 0
@@ -66,7 +66,7 @@ int main(void) {
 			int cur_y = height[i].back().first, cur_x = height[i].back().second;
 			height[i].pop_back();
 			if( tank[cur_y][cur_x][4] > i ) {
-				tank[cur_y][cur_x][4] = i; // ÇØ´ç ³ëµå¿¡ height°ª ³Ö¾îÁÜ 
+				tank[cur_y][cur_x][4] = i; // í•´ë‹¹ ë…¸ë“œì— heightê°’ ë„£ì–´ì¤Œ 
 			}
 			for(int j = 0; j < 4; j++) {
 				if( tank[cur_y][cur_x][j] != -1) {
