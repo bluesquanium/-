@@ -22,8 +22,8 @@ int main(void) {
 		team_a.push_back(i);
 	}
 	while(!team_a.empty()) {
-		if (team_a.size() != n/2) { // ÆÀ ¸â¹ö°¡ n/2°¡ ¸¸Á·µÇÁö ¾Ê¾Ò´Ù¸é ÆÀ¿ø Ãß°¡ÇÑ´Ù. 
-			if(team_a.back() + 1 + (n/2-team_a.size()) < n) { // ¹üÀ§ ³Ñ¾î°¡Áö ¾ÊÀ½. 
+		if (team_a.size() != n/2) { // íŒ€ ë©¤ë²„ê°€ n/2ê°€ ë§Œì¡±ë˜ì§€ ì•Šì•˜ë‹¤ë©´ íŒ€ì› ì¶”ê°€í•œë‹¤. 
+			if(team_a.back() + 1 + (n/2-team_a.size()) < n) { // ë²”ìœ„ ë„˜ì–´ê°€ì§€ ì•ŠìŒ. 
 				team_a.back() += 1;
 				
 				int need = n/2-team_a.size();
