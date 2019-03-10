@@ -6,7 +6,7 @@ using namespace std;
 int dy[DIR] = {-1, 0, 1, 0};
 int dx[DIR] = { 0, 1, 0,-1};
 int N, ans;
-int m[20][20], move[5]; // 0:À§, 1:¿À¸¥, 2:¾Æ·¡, 3:¿Þ 
+int m[20][20], move[5]; // 0:ìœ„, 1:ì˜¤ë¥¸, 2:ì•„ëž˜, 3:ì™¼ 
 
 void Dfs(int count) {
 	if(count < 5) {
@@ -44,7 +44,7 @@ void Dfs(int count) {
 				}
 				
 				priority_queue<int, vector<int>, greater<int> > pq;
-				for(int j = 0; j < N; j++) { // ÇÑÂÊÀ¸·Î ¹Ð¾îÁÜ 
+				for(int j = 0; j < N; j++) { // í•œìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ 
 					if(temp_m[j][i] == 0) {
 						pq.push(j);
 					}
@@ -77,7 +77,7 @@ void Dfs(int count) {
 				}
 				
 				priority_queue<int, vector<int>, less<int> > pq;
-				for(int j = N-1; j >= 0; j--) { // ÇÑÂÊÀ¸·Î ¹Ð¾îÁÜ 
+				for(int j = N-1; j >= 0; j--) { // í•œìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ 
 					if(temp_m[j][i] == 0) {
 						pq.push(j);
 					}
@@ -110,7 +110,7 @@ void Dfs(int count) {
 				}
 				
 				priority_queue<int, vector<int>, greater<int> > pq;
-				for(int j = 0; j < N; j++) { // ÇÑÂÊÀ¸·Î ¹Ð¾îÁÜ 
+				for(int j = 0; j < N; j++) { // í•œìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ 
 					if(temp_m[i][j] == 0) {
 						pq.push(j);
 					}
@@ -143,7 +143,7 @@ void Dfs(int count) {
 				}
 				
 				priority_queue<int, vector<int>, less<int> > pq;
-				for(int j = N-1; j >= 0; j--) { // ÇÑÂÊÀ¸·Î ¹Ð¾îÁÜ 
+				for(int j = N-1; j >= 0; j--) { // í•œìª½ìœ¼ë¡œ ë°€ì–´ì¤Œ 
 					if(temp_m[i][j] == 0) {
 						pq.push(j);
 					}
