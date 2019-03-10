@@ -12,8 +12,8 @@ public:
 };
 
 int n, from, to, result;
-GNode * addr[100001]; // 0Àº ´õ¹Ì 
-bool is_checked[100001]; // 0Àº ´õ¹Ì
+GNode * addr[100001]; // 0Ã€Âº Â´ÃµÂ¹ÃŒ 
+bool is_checked[100001]; // 0Ã€Âº Â´ÃµÂ¹ÃŒ
 
 void Dfs(int cur, int dest, int cost, int mcost) {
 	if(cur == dest) {
