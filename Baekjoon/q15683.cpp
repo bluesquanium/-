@@ -69,7 +69,7 @@ int main(void) {
 		for(int j = 0; j < m; j++) {
 			cin >> map[i][j];
 			if(1 <= map[i][j] && map[i][j] <= 5) {
-				cctv.push_back( make_pair( make_pair(i,j), map[i][j]-1 ) ); // cctv ¹øÈ£ 0ºÎÅÍ ¸Å±è 
+				cctv.push_back( make_pair( make_pair(i,j), map[i][j]-1 ) ); // cctv Â¹Ã¸ÃˆÂ£ 0ÂºÃŽÃ…Ã Â¸Ã…Â±Ã¨ 
 			}
 		}
 	}
