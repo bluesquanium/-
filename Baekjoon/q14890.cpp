@@ -14,7 +14,7 @@ int Answer() {
 		int count1 = 0, count2 = 0;
 		for(int j = 0; j < n; j++) {
 			//horizontal
-			if( cur_height1 == map[i][j] )// ³ôÀÌ °°Àº °æ¿ì 
+			if( cur_height1 == map[i][j] )// Â³Ã´Ã€ÃŒ Â°Â°Ã€Âº Â°Ã¦Â¿Ã¬ 
 				count1++;
 			else if( cur_height1 < map[i][j] && (count1 < l) )
 				check1 = false;
