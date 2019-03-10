@@ -8,7 +8,7 @@ using namespace std;
 #define piii tuple<int,int,int>
 
 #define DIR	4
-int dy[DIR] = {-1, 0, 1, 0}; // �ݽð� ����
+int dy[DIR] = {-1, 0, 1, 0}; // ¹Ý½Ã°è ¹æÇâ
 int dx[DIR] = { 0,-1, 0, 1};
 
 int N, a, s_size, s_exp, ans;
