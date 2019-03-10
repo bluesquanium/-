@@ -4,14 +4,14 @@
 using namespace std;
 
 int N, M, H, a, b, ans = 4;
-int edge[11][31]; // edge[i][j] : i¹øÂ° »ç´Ù¸®ÀÇ ¿À¸¥ÂÊ ¹æÇâ j ¹øÂ° ´Ù¸® 
+int edge[11][31]; // edge[i][j] : ië²ˆì§¸ ì‚¬ë‹¤ë¦¬ì˜ ì˜¤ë¥¸ìª½ ë°©í–¥ j ë²ˆì§¸ ë‹¤ë¦¬ 
 
 void Dfs(int count) {
 	if(ans<=count) return;
 	
 	bool check = true;
 	int c = 0;
-	// Á¤´ä ¸¸Á·ÇÏ´ÂÁö È®ÀÎ 
+	// ì •ë‹µ ë§Œì¡±í•˜ëŠ”ì§€ í™•ì¸ 
 	for(int i = 1; i <= N; i++) {
 		int cur = i;
 		for(int j = 1; j <= H; j++) {
