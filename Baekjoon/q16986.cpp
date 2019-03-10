@@ -49,7 +49,7 @@ void Dfs(int round, int p1, int p2) {
 	if (3*K-2-round < K-win[0]) {
 		return;
 	}
-	if (p1 == 0) { // Áö¿ì°¡ Âü¿©
+	if (p1 == 0) { // ÃÃ¶Â¿Ã¬Â°Â¡ Ã‚Ã¼Â¿Â©
 		for (int i = 0; i < N; i++) {
 			if (is_used[i] == 0) {
 				is_used[i] = 1;
@@ -71,7 +71,7 @@ void Dfs(int round, int p1, int p2) {
 			}
 		}
 	}
-	else { // Áö¿ì Âü¿© x
+	else { // ÃÃ¶Â¿Ã¬ Ã‚Ã¼Â¿Â© x
 		if ( t[P[p1][c[p1]]][P[p2][c[p2]]] == 2 ) {
 			win[p1]++;
 			c[p1]++;
