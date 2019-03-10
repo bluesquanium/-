@@ -4,7 +4,7 @@
 using namespace std;
 #define Point	pair<int,int>
 
-//µ¿:1, ¼­:2, ºÏ:3, ³²:4
+//ë™:1, ì„œ:2, ë¶:3, ë‚¨:4
 int dx[5] = { 0, 1,-1, 0, 0};
 int dy[5] = { 0, 0, 0,-1, 1};
 
@@ -21,7 +21,7 @@ public :
 
 int main(void) {
 	int n, m ,x, y, k;
-	scanf("%d %d %d %d %d",&n, &m, &x, &y, &k); //±Û¿¡ ½áÀÖ´Â x,y¿Í ³» ÇÁ·Î±×·¥ÀÇ x,y´Â ¹İ´ëÀÓ. Á¶½É! 
+	scanf("%d %d %d %d %d",&n, &m, &x, &y, &k); //ê¸€ì— ì¨ìˆëŠ” x,yì™€ ë‚´ í”„ë¡œê·¸ë¨ì˜ x,yëŠ” ë°˜ëŒ€ì„. ì¡°ì‹¬! 
 	Dice dice(make_pair(x,y));
 	int map[n][m];
 	for(int i = 0; i < n; i++) {
@@ -37,8 +37,8 @@ int main(void) {
 		int new_x = dice.point.second + dx[command];
 		if( 0 <= new_y && new_y < n &&
 			0 <= new_x && new_x < m ) {
-			dice.point = make_pair(new_y, new_x); // ÁÂÇ¥ ¾÷µ¥ÀÌÆ®
-			//ÁÖ»çÀ§ ¸é ¾÷µ¥ÀÌÆ® 
+			dice.point = make_pair(new_y, new_x); // ì¢Œí‘œ ì—…ë°ì´íŠ¸
+			//ì£¼ì‚¬ìœ„ ë©´ ì—…ë°ì´íŠ¸ 
 			if(command == 1) {
 				int temp0 = dice.state[0];
 				dice.state[0] = dice.state[2];
@@ -67,7 +67,7 @@ int main(void) {
 				dice.state[5] = dice.state[4];
 				dice.state[4] = temp0;
 			}
-			//¹Ù´Ú¸é ¾÷µ¥ÀÌÆ®
+			//ë°”ë‹¥ë©´ ì—…ë°ì´íŠ¸
 			if(map[new_y][new_x] == 0) {
 				map[new_y][new_x] = dice.state[5];
 			}
