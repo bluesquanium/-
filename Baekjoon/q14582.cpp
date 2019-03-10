@@ -5,7 +5,7 @@ int main(void) {
 	int scoreboard1[9] = {0,};
 	int scoreboard2[9] = {0,};
 	int score1 = 0, score2 = 0;
-	bool check = false; // ���� ��찡 �ִ��� üũ 
+	bool check = false; // Áö´ø °æ¿ì°¡ ÀÖ´ÂÁö Ã¼Å© 
 	for(int i = 0; i < 9; i++) {
 		cin >> scoreboard1[i];
 	}
