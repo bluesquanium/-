@@ -4,7 +4,7 @@ using namespace std;
 #define DIR	4
 
 int map[101][101];
-//0:µ¿, 1:ºÏ, 2:¼­, 3:³²
+//0:ÂµÂ¿, 1:ÂºÃ, 2:Â¼Â­, 3:Â³Â²
 
 int dy[DIR] = { 0,-1, 0, 1};
 int dx[DIR] = { 1, 0,-1, 0};
@@ -14,7 +14,7 @@ int main(void) {
 	cin >> n;
 	for(int i = 0; i < n; i++) {
 		int y, x, d, g;
-		cin >> y >> x >> d >> g; // y, x ¹İ´ë·Î ¹ŞÀ½.
+		cin >> y >> x >> d >> g; // y, x Â¹ÃÂ´Ã«Â·Ã Â¹ÃÃ€Â½.
 		
 		int temp[201][201];
 		memset(temp, 0, sizeof(int)*201*201);
