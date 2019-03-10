@@ -31,23 +31,23 @@ int main(void) {
 	
 	Point cur = cleaner.point;
 	while(1) {
-		// 1. ÇöÀç À§Ä¡¸¦ Ã»¼ÒÇÑ´Ù. 
+		// 1. í˜„ì¬ ìœ„ì¹˜ë¥¼ ì²­ì†Œí•œë‹¤. 
 		if(map[cleaner.point.first][cleaner.point.second] == 0) {
 			count++;
-			map[cleaner.point.first][cleaner.point.second] = 2; // 2´Â Ã»¼ÒÇßÀ½À» ¶æÇÔ 
+			map[cleaner.point.first][cleaner.point.second] = 2; // 2ëŠ” ì²­ì†Œí–ˆìŒì„ ëœ»í•¨ 
 		}
 		
 		int temp_dir = (DIR + cleaner.dir-1) % DIR;
-		bool check_4dir = false; // 4¹æÇâ °Ë»çÇØ¼­ ºó °÷ ÀÖÀ¸¸é true·Î. 
+		bool check_4dir = false; // 4ë°©í–¥ ê²€ì‚¬í•´ì„œ ë¹ˆ ê³³ ìˆìœ¼ë©´ trueë¡œ. 
 		
-		// 2. ÇöÀç À§Ä¡¿¡¼­ ¿ŞÂÊ¹æÇâºÎÅÍ Â÷·Ê´ë·Î Å½»öÀ» ÁøÇàÇÑ´Ù. 
+		// 2. í˜„ì¬ ìœ„ì¹˜ì—ì„œ ì™¼ìª½ë°©í–¥ë¶€í„° ì°¨ë¡€ëŒ€ë¡œ íƒìƒ‰ì„ ì§„í–‰í•œë‹¤. 
 		do{
 			int y = cleaner.point.first + dy[temp_dir], x = cleaner.point.second + dx[temp_dir];
 			if( 0 <= y && y < n && 0 <= x && x < m ) {
 			 	if(map[y][x] == 0) {
 			 		check_4dir = true;
-			 		cleaner.dir = temp_dir; //¹æÇâ ¾÷µ¥ÀÌÆ®
-					cleaner.point = make_pair( y, x ); // Ã»¼Ò±â ÁÂÇ¥ ¾÷µ¥ÀÌÆ® 
+			 		cleaner.dir = temp_dir; //ë°©í–¥ ì—…ë°ì´íŠ¸
+					cleaner.point = make_pair( y, x ); // ì²­ì†Œê¸° ì¢Œí‘œ ì—…ë°ì´íŠ¸ 
 					break;
 				}
 			}
@@ -58,9 +58,9 @@ int main(void) {
 		
 		if(check_4dir == true) continue;
 		
-		// 3. ³× ¹æÇâ ¸ğµÎ Ã»¼Ò µÇÀÖ°Å³ª º®ÀÎ °æ¿ì¿¡´Â, ¹Ù¶óº¸´Â ¹æÇâÀ» À¯ÁöÇÑ Ã¤·Î ÇÑ Ä­ ÈÄÁøÇÏ°í 2¹øÀ¸·Î µ¹¾Æ°£´Ù. 
+		// 3. ë„¤ ë°©í–¥ ëª¨ë‘ ì²­ì†Œ ë˜ìˆê±°ë‚˜ ë²½ì¸ ê²½ìš°ì—ëŠ”, ë°”ë¼ë³´ëŠ” ë°©í–¥ì„ ìœ ì§€í•œ ì±„ë¡œ í•œ ì¹¸ í›„ì§„í•˜ê³  2ë²ˆìœ¼ë¡œ ëŒì•„ê°„ë‹¤. 
 		cleaner.point = make_pair( cleaner.point.first - dy[cleaner.dir], cleaner.point.second - dx[cleaner.dir] );		
-		// 4. ³× ¹æÇâ ¸ğµÎ Ã»¼Ò µÇÀÖ°Å³ª º®ÀÌ¸é¼­, µÚÂÊ ¹æÇâÀÌ º®ÀÌ¶ó ÈÄÁøµµ ÇÒ ¼ö ¾ø´Â °æ¿ì¿¡´Â ÀÛµ¿À» ¸ØÃá´Ù. 
+		// 4. ë„¤ ë°©í–¥ ëª¨ë‘ ì²­ì†Œ ë˜ìˆê±°ë‚˜ ë²½ì´ë©´ì„œ, ë’¤ìª½ ë°©í–¥ì´ ë²½ì´ë¼ í›„ì§„ë„ í•  ìˆ˜ ì—†ëŠ” ê²½ìš°ì—ëŠ” ì‘ë™ì„ ë©ˆì¶˜ë‹¤. 
 		if(map[cleaner.point.first][cleaner.point.second] == 1) break;
 	}
 	
