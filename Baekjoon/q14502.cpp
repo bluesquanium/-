@@ -53,7 +53,7 @@ int main(void) {
 					for(int l = 0; l < DIR; l++) {
 						if( 0 <= cur.first + dy[l] && cur.first + dy[l] < n && 0 <= cur.second + dx[l] && cur.second + dx[l] < m ) {
 							if( temp_map[cur.first + dy[l]][cur.second + dx[l]] == 0 ) {
-								temp_map[cur.first + dy[l]][cur.second + dx[l]] = 2; // 2�� �ٲ��ֱ� 
+								temp_map[cur.first + dy[l]][cur.second + dx[l]] = 2; // 2·Î ¹Ù²ãÁÖ±â 
 								q.push( MakePoint(cur.first + dy[l], cur.second + dx[l]) );
 							}
 						}
