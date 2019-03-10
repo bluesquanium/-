@@ -16,7 +16,7 @@ int abs(int x) {
 	return (x > 0 ? x : -x);
 }
 
-bool Bfs() { // º¯ÇÑ °ªÀÌ ÀÖÀ¸¸é true, ¾øÀ¸¸é false ¹İÈ¯
+bool Bfs() { // ë³€í•œ ê°’ì´ ìˆìœ¼ë©´ true, ì—†ìœ¼ë©´ false ë°˜í™˜
 	bool is_changed = false;
 	vector<pii> s;
 
