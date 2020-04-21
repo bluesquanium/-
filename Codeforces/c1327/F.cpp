@@ -13,13 +13,11 @@ using namespace std;
 #define MAX 500000
 #define MOD 998244353
 
-ll N, K, M, ans, cur;
-ll check1[MAX + 1];
-vector< vector<ll> > check0;
-ll dp[MAX + 1];
+ll N, K, M, ans, cur, sum, curl;
+ll check1[MAX + 1], check0[MAX + 1], dp[MAX + 1];
 
 typedef struct {
-	int l, r, x;
+	ll l, r, x;
 } Condition;
 vector<Condition> m;
 
@@ -28,55 +26,55 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> N >> K >> M;
 	m.resize(M);
-	for (int i = 0; i < M; i++) {
+	for (ll i = 0; i < M; i++) {
 		cin >> m[i].l >> m[i].r >> m[i].x;
 		m[i].l--; m[i].r--;
 	}
 	ans = 1;
-	for (int k = 0; k < K; k++) {
+	for (ll k = 0; k < K; k++) {
+		cur = 1;
+		curl = sum = 0;
 		memset(dp, 0, sizeof(ll) * (MAX + 1));
 		memset(check1, 0, sizeof(ll) * (MAX + 1));
-		check0.clear();
-		check0.resize(N);
+		memset(check0, -1, sizeof(ll) * (MAX + 1));
 
-		for (int i = 0; i < M; i++) {
-			if ((m[i].x >> k) & 1) {
+		for (ll i = 0; i < M; i++) {
+			if (m[i].x & (1 << k)) {
 				check1[m[i].l]++;
 				check1[m[i].r + 1]--;
 			}
 			else {
-				check0[m[i].r].push_back(m[i].l);
+				check0[m[i].r] = max(m[i].l, check0[m[i].r]);
 			}
 		}
-		cur = 1;
-		for (int i = 0; i < N; i++) {
+		for (ll i = 0; i < N; i++) {
 			if (i != 0) {
 				check1[i] += check1[i - 1];
 			}
 
-			if (check0[i].size() != 0) {
-				ll maxL = -1;
-				for (int j = 0; j < check0[i].size(); j++) {
-					maxL = max(maxL, check0[i][j]);
-				}
-				for (int j = 0; j < maxL; j++) {
-					dp[j] = 0;
+			if (check0[i] != -1) {
+				while (curl < check0[i]) {
+					sum = (sum - dp[curl] + MOD) % MOD;
+					dp[curl] = 0;
+
+					curl++;
 				}
 				if (check1[i] != 0) {
 					cur = 0;
 				}
-				for (int j = maxL; j < i; j++) {
-					cur += dp[j];
+				else {
+					dp[i] = cur;
 				}
+				cur = (cur + sum) % MOD;
+				sum = (sum + dp[i]) % MOD;
 			}
-
-			if (check1[i] == 0) {
+			else if (check1[i] == 0) {
 				dp[i] = cur;
-				cur *= 2;
+				cur = (cur * 2) % MOD;
+				sum = (sum + dp[i]) % MOD;
 			}
-			
 		}
-		ans *= cur;
+		ans = (ans * cur) % MOD;
 	}
 
 	cout << ans;
