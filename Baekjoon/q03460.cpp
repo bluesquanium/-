@@ -12,7 +12,7 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans;
+ll T, N, ans;
 vector<ll> m;
 
 int main(void) {
@@ -21,12 +21,16 @@ int main(void) {
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
 		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
 
-		cout << ans << '\n';
+		ll step = 0;
+		while (N) {
+			if (N % 2) {
+				cout << step << ' ';
+			}
+
+			N /= 2;
+			step++;
+		}
 	}
 
 	return 0;

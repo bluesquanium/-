@@ -10,24 +10,24 @@
 #define pll pair<ll, ll>
 #define LINF 0x7fffffffffffffff
 #define INF 0x7fffffff
+#define MOD 10007
 using namespace std;
 
-ll T, N, M, ans;
-vector<ll> m;
+ll N, ans;
+ll mem[1001];
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> T;
-	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
 
-		cout << ans << '\n';
+	cin >> N;
+
+	mem[1] = 1; mem[2] = 3;
+	for (ll i = 3; i <= N; i++) {
+		mem[i] = (mem[i - 1] + mem[i - 2] * 2) % MOD;
 	}
+	
+	cout << mem[N];
 
 	return 0;
 }

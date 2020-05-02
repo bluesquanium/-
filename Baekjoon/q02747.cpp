@@ -1,30 +1,31 @@
 #include <iostream>
 #include <string>
-#include <cstring>
 #include <vector>
-#include <map>
-#include <queue>
 #include <algorithm>
 #define ll	long long
 #define pii	pair<int,int>
-#define pll pair<ll, ll>
-#define LINF 0x7fffffffffffffff
-#define INF 0x7fffffff
 using namespace std;
 
-ll N, M, ans;
-vector<ll> m;
+#define MAX 45
+int N, ans;
+int mem[MAX + 1];
+
+void findFibo() {
+	mem[1] = mem[2] = 1;
+	for (int i = 3; i <= MAX; i++) {
+		mem[i] = mem[i - 1] + mem[i - 2];
+	}
+}
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
+
+	findFibo();
 	cin >> N;
-	m.resize(N);
-	for (ll i = 0; i < N; i++) {
-		
-	}
-	
-	cout << ans;
+
+	cout << mem[N];
 
 	return 0;
 }
+

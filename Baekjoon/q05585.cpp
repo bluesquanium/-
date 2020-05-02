@@ -12,22 +12,22 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans;
+ll N, M, ans, money = 1000;
+ll coins[6] = { 500, 100, 50, 10, 5, 1 };
 vector<ll> m;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> T;
-	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
-
-		cout << ans << '\n';
+	cin >> N;
+	money -= N;
+	for (ll i = 0; i < 6; i++) {
+		ll num = money / coins[i];
+		ans += num;
+		money -= num * coins[i];
 	}
+
+	cout << ans;
 
 	return 0;
 }

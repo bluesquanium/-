@@ -12,7 +12,7 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans;
+ll T, X, Y, A, B, ans;
 vector<ll> m;
 
 int main(void) {
@@ -20,11 +20,12 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
+		ans = 0;
+		cin >> X >> Y;
+		cin >> A >> B;
+		B = min(B, A * 2);
+		ans += min(X, Y) * B;
+		ans += abs(X - Y) * A;
 
 		cout << ans << '\n';
 	}

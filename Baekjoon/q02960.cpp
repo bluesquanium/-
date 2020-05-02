@@ -12,22 +12,40 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans;
-vector<ll> m;
+ll N, K, ans;
+ll m[1001];
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> T;
-	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
+	cin >> N >> K;
 
-		cout << ans << '\n';
+	ll cnt = 0;
+	for (ll i = 2; i <= N; i++) {
+		if (m[i] == 0) {
+			m[i] = 1;
+			cnt++;
+			if (cnt == K) {
+				cout << i;
+				return 0;
+			}
+
+			ll j = i * 2;
+			while (j <= N) {
+				if (m[j] == 0) {
+					m[j] = 1;
+					cnt++;
+					if (cnt == K) {
+						cout << j;
+						return 0;
+					}
+				}
+				j += i;
+			}
+		}
 	}
+
+	cout << ans;
 
 	return 0;
 }
