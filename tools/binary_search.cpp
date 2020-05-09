@@ -12,21 +12,16 @@
 #define INF 0x7fffffff
 using namespace std;
 
-void binarySearch(ll s, ll e) {
+#define BSMAX 100000
+bs_arr[BSMAX];
+void binarySearch(ll s, ll e, ll target) {
+/////////////////////WRONG
 	while (s < e) {
 		ll mid = (s + e) / 2;
-		ll sum = 0;
-		for (int i = 0; i < N; i++) {
-			if (m[i] > mid) {
-				sum += m[i] - mid;
-			}
-		}
-		if (sum < M) {
-			e = mid;
-		}
-		else {
+		if (target > m[mid]) {
 			s = mid + 1;
-			ans = max(ans, mid);
+		} else {
+			e = mid;
 		}
 	}
 }
