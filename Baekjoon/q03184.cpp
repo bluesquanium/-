@@ -1,3 +1,4 @@
+#include <iostream>
 #include <string>
 #include <cstring>
 #include <vector>
@@ -11,10 +12,9 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll N, T, R, C, ans;
+#define MAX_Y 250
+#define MAX_X 250
 
-#define MAX_Y 500
-#define MAX_X 500
 #define DIR 4
 ll dy[DIR] = { -1, 0, 1, 0 };
 ll dx[DIR] = { 0, 1, 0 ,-1 };
@@ -35,35 +35,38 @@ void ReadMmap(ll N) {
 	}
 }
 
-void PrintMmap() {
+void ReadMmap(ll N, ll M) {
 	for (ll i = 0; i < N; i++) {
-		for (ll j = 0; j < N; j++) {
-			cout << mmap[i][j] << ' ';
+		for (ll j = 0; j < M; j++) {
+			cin >> mmap[i][j];
 		}
-		cout << '\n';
 	}
-	cout << '\n';
 }
 
-ll BfsMmapBasic(ll startY, ll startX, ll Y, ll X, ll targetY, ll targetX) {
+ll BfsMmapBasic(ll startY, ll startX, ll Y, ll X) {
+	ll o = 0, v = 0;
 	ll step = 1;
 	vector<StItem> st1;
-	st1.push_back(StItem{startY, startX});
+	st1.push_back(StItem{ startY, startX });
 	while (!st1.empty()) {
 		vector<StItem> st2;
 		while (!st1.empty()) {
 			StItem cur = st1.back(); st1.pop_back();
 			if (visited[cur.y][cur.x] == 0) {
 				visited[cur.y][cur.x] = step;
-				if (cur.y == targetY && cur.x == targetX) {
-					return step;
+
+				if (mmap[cur.y][cur.x] == 'v') {
+					v++;
+				}
+				else if (mmap[cur.y][cur.x] == 'o') {
+					o++;
 				}
 
 				for (ll dir = 0; dir < DIR; dir++) {
 					ll ny = cur.y + dy[dir], nx = cur.x + dx[dir];
 					if (0 <= ny && ny < Y &&
 						0 <= nx && nx < X) {
-						if (visited[ny][nx] == 0) {
+						if (visited[ny][nx] == 0 && mmap[ny][nx] != '#') {
 							st2.push_back(StItem{ ny, nx });
 						}
 					}
@@ -74,5 +77,42 @@ ll BfsMmapBasic(ll startY, ll startX, ll Y, ll X, ll targetY, ll targetX) {
 		step++;
 	}
 
-	return -1;
+	if (o > v) {
+		return o;
+	}
+	else {
+		return -v;
+	}
+}
+
+ll R, C;
+pll ans;
+
+
+
+int main(void) {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL), cout.tie(NULL);
+	cin >> R >> C;
+	for (ll i = 0; i < R; i++) {
+		cin >> mmap[i];
+	}
+
+	for (ll i = 0; i < R; i++) {
+		for (ll j = 0; j < C; j++) {
+			if (mmap[i][j] != '#' && visited[i][j] == 0) {
+				ll num = BfsMmapBasic(i, j, R, C);
+				if (num < 0) {
+					ans.second += abs(num);
+				}
+				else {
+					ans.first += num;
+				}
+			}
+		}
+	}
+
+	cout << ans.first << ' ' << ans.second;
+
+	return 0;
 }
