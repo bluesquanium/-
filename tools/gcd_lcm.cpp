@@ -3,9 +3,9 @@
 using namespace std;
 
 ll Gcd(ll x, ll y) {
-	return y?gcd(y,x%y):x;
+	return y?Gcd(y,x%y):x;
 }
 
 ll Lcm(ll x, ll y) {
-	return x*y/gcd(x,y);
+	return x*y/Gcd(x,y);
 }
