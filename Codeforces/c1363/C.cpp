@@ -13,21 +13,35 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans;
-vector<ll> m;
+ll T, N, X, ans;
+vector<pll> m;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> N;
+		cin >> N >> X;
 		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
+		ll cnt = 0;
+		for (ll i = 0; i < N - 1; i++) {
+			cin >> m[i].first >> m[i].second;
+			if (m[i].first == X || m[i].second == X) {
+				cnt++;
+			}
 		}
 
-		cout << ans << '\n';
+		if (cnt <= 1) {
+			cout << "Ayush\n";
+		}
+		else {
+			if (N % 2 == 0) {
+				cout << "Ayush\n";
+			}
+			else {
+				cout << "Ashish\n";
+			}
+		}
 	}
 
 	return 0;

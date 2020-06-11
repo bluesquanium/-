@@ -13,7 +13,7 @@
 using namespace std;
 
 #define BSMAX 100000
-bs_arr[BSMAX];
+ll bs_arr[BSMAX];
 //Becaeful!
 // BinarySearchByIndex finds target from [bs_arr[s], bs_arr[e]), not [bs_arr[s], bs_arr[e]]!
 ll BinarySearchByIndex(ll s, ll e, ll target) {

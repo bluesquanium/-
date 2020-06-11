@@ -13,19 +13,24 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll N, M, ans;
+ll T, N, M, K, ans;
 vector<ll> m;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> N;
-	m.resize(N);
-	for (ll i = 0; i < N; i++) {
-		
+	cin >> T;
+	for (ll t = 1; t <= T; t++) {
+		ans = 0;
+		cin >> N >> M >> K;
+
+		ll maxi = min(N / K, M);
+		ll mini = M - maxi;
+		mini = mini < 0 ? 0 : mini;
+		mini = (mini + K - 2) / (K - 1);
+
+		cout << maxi - mini << '\n';
 	}
-	
-	cout << ans;
 
 	return 0;
 }
