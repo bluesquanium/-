@@ -13,39 +13,33 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, A, B, ans;
-vector<ll> m;
+ll T, ans;
+string s;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> A >> B;
-		if (B > A) {
-			ll temp = A;
-			A = B;
-			B = temp;
+		cin >> s;
+		ll cnt0 = 0, cnt1 = 0;
+		for (ll i = 0; i < s.size(); i++) {
+			if (s[i] == '0') {
+				cnt0++;
+			}
+			else {
+				cnt1++;
+			}
 		}
-		ll num = min(A - B, B);
-		ans = num;
-		A -= num * 2;
-		B -= num;
-		ans += (B / 3) * 2;
-		A -= (B / 3) * 3;
-		B -= (B / 3) * 3;
-		if (A >= 2 && B >= 1) {
-			ans++;
-			A -= 2;
-			B -= 1;
+
+		ans = min(cnt0, cnt1);
+
+		if (ans % 2 == 0) {
+			cout << "NET\n";
 		}
-		if (A >= 2 && B >= 1) {
-			ans++;
-			A -= 2;
-			B -= 1;
+		else { // odd
+			cout << "DA\n";
 		}
-		
-		cout << ans << '\n';
 	}
 
 	return 0;

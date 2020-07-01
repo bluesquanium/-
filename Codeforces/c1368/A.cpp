@@ -13,7 +13,7 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, A, B, ans;
+ll T, N, A, B, ans;
 vector<ll> m;
 
 int main(void) {
@@ -21,30 +21,25 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> A >> B;
-		if (B > A) {
-			ll temp = A;
-			A = B;
-			B = temp;
-		}
-		ll num = min(A - B, B);
-		ans = num;
-		A -= num * 2;
-		B -= num;
-		ans += (B / 3) * 2;
-		A -= (B / 3) * 3;
-		B -= (B / 3) * 3;
-		if (A >= 2 && B >= 1) {
-			ans++;
-			A -= 2;
-			B -= 1;
-		}
-		if (A >= 2 && B >= 1) {
-			ans++;
-			A -= 2;
-			B -= 1;
-		}
+		ans = 0;
+		cin >> A >> B >> N;
 		
+		if (A > N || B > N) {
+			ans = 0;
+		}
+		else {
+			ans = 1;
+			while (A + B <= N) {
+				if (A < B) {
+					A += B;
+				}
+				else {
+					B += A;
+				}
+				ans++;
+			}
+		}
+
 		cout << ans << '\n';
 	}
 

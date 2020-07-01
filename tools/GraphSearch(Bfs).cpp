@@ -55,3 +55,11 @@ void BfsInverseGraph(ll root) {
 		}
 	}
 }
+
+int main(void) {
+	for (ll i = 1; i <= NUMNODE; i++) {
+		nodes[i].depth = INF;
+	}
+
+	return 0;
+}

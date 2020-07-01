@@ -13,39 +13,38 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, A, B, ans;
+ll N, M, ans;
 vector<ll> m;
+
+ll num[6];
+
+void solve(ll cur, ll cnt) {
+	if (cnt == 6) {
+		for (ll i = 0; i < 6; i++) {
+			cout << num[i] << ' ';
+		}
+		cout << '\n';
+		return;
+	}
+
+	for (ll i = cur; i < N; i++) {
+		num[cnt] = m[i];
+		solve(i + 1, cnt + 1);
+	}
+}
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> T;
-	for (ll t = 1; t <= T; t++) {
-		cin >> A >> B;
-		if (B > A) {
-			ll temp = A;
-			A = B;
-			B = temp;
+	
+	while (cin >> N && N != 0) {
+		m.clear(); m.resize(N);
+		for (ll i = 0; i < N; i++) {
+			cin >> m[i];
 		}
-		ll num = min(A - B, B);
-		ans = num;
-		A -= num * 2;
-		B -= num;
-		ans += (B / 3) * 2;
-		A -= (B / 3) * 3;
-		B -= (B / 3) * 3;
-		if (A >= 2 && B >= 1) {
-			ans++;
-			A -= 2;
-			B -= 1;
-		}
-		if (A >= 2 && B >= 1) {
-			ans++;
-			A -= 2;
-			B -= 1;
-		}
-		
-		cout << ans << '\n';
+
+		solve(0, 0);
+		cout << '\n';
 	}
 
 	return 0;

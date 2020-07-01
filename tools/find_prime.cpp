@@ -25,3 +25,13 @@ void findPrime(ll n) {
 		}
 	}
 }
+
+#define MAX_FACTORS 10000000
+vector<ll> primeFactors[MAX_FACTORS + 1];
+void findPrimeFactors(ll n) {
+	for (ll p : primes) {
+		for (ll i = p; i < n; i += p) {
+			primeFactors[i].push_back(p);
+		}
+	}
+}
