@@ -13,7 +13,7 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans, temp;
+ll T, N, M, ans;
 vector<ll> m;
 
 int main(void) {
@@ -21,13 +21,34 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
+		ans = 0;
 		cin >> N;
 		m.clear(); m.resize(N);
 		for (ll i = 0; i < N; i++) {
 			cin >> m[i];
 		}
 
-		cout << ans << '\n';
+		bool maxAvailable = false;
+		ll maxi = m[0];
+		maxAvailable = true;
+		for (ll i = 1; i < N; i++) {
+			if (maxAvailable) {
+				if (m[i - 1] > m[i]) {
+					ans++;
+				}
+			}
+
+			maxAvailable = false;
+			if (m[i] > maxi) {
+				maxAvailable = true;
+			}
+			maxi = max(maxi, m[i]);
+		}
+		if (maxAvailable) {
+			ans++;
+		}
+
+		cout << "Case #" << t << ": " << ans << '\n';
 	}
 
 	return 0;
