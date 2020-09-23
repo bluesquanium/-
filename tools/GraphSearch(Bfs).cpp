@@ -15,10 +15,37 @@ using namespace std;
 #define NUMNODE 500
 typedef struct {
 	ll depth;
+	ll size;
+	ll parent;
 } Node;
 Node nodes[NUMNODE + 1];
+vector<ll> e[NUMNODE + 1];
 vector<ll> edge_to[NUMNODE + 1];
 vector<ll> edge_from[NUMNODE + 1];
+
+void dfs(ll u) {
+	nodes[u].size = 1;
+	for (auto v : e[u]) {
+		if (nodes[u].parent == v) {
+			continue;
+		}
+		nodes[v].parent = u;
+		dfs(v);
+		nodes[u].size += nodes[v].size;
+	}
+}
+
+// 이건 템플릿화하기엔 너무 특정 상황을 위한 것이지만,
+// DFS 방식의 좌우 노드수가 맞는 노드를 찾아가기에는 주목할 만한
+// 재귀함수이기에 추가해놓는다. 
+ll graphFind(ll u) {
+	for (auto v : e[u]) {
+		if (v != nodes[u].parent && nodes[v].size * 2 >= N) {
+			return graphFind(v);
+		}
+	}
+	return u;
+}
 
 void BfsGraph(ll root) {
 	nodes[root].depth = 0;

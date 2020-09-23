@@ -5,7 +5,6 @@
 #include <vector>
 #include <map>
 #include <queue>
-#include <set>
 #include <algorithm>
 #define ll	long long
 #define pii	pair<int,int>
@@ -14,19 +13,20 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll N, M, ans, temp;
+ll T, X, Y, K, ans, temp;
 vector<ll> m;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> N;
-	m.resize(N);
-	for (ll i = 0; i < N; i++) {
-		cin >> m[i];
+	cin >> T;
+	for (ll t = 1; t <= T; t++) {
+		cin >> X >> Y >> K;
+		ans = (Y * K + K - 1 + (X - 2)) / (X - 1);
+		ans += K;
+
+		cout << ans << '\n';
 	}
-	
-	cout << ans;
 
 	return 0;
 }

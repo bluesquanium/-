@@ -34,17 +34,29 @@ void updateFactorial(int N) {
 	}
 }
 
+ll Factorial(ll n, ll r) {
+	ll num = (f[n] * rf[n - r]) % MOD;
+	return num;
+}
+
 ll Combination(ll n, ll r) {
 	ll num = 1;
-	for (ll i = 1; i <= n; i++) {
-		num = (num * i) % MOD;
-	}
-	for (ll i = 1; i <= r; i++) {
-		num = (num * inv[i]) % MOD;
-	}
-	for (ll i = 1; i <= n - r; i++) {
-		num = (num * inv[i]) % MOD;
-	}
+	num = (num * f[n]) % MOD;
+	num = (num * rf[r]) % MOD;
+	num = (num * rf[n - r]) % MOD;
 
 	return num;
+	
+	// 나이브한 방법 
+	//ll num = 1;
+	//for (ll i = 1; i <= n; i++) {
+	//	num = (num * i) % MOD;
+	//}
+	//for (ll i = 1; i <= r; i++) {
+	//	num = (num * inv[i]) % MOD;
+	//}
+	//for (ll i = 1; i <= n - r; i++) {
+	//	num = (num * inv[i]) % MOD;
+	//}
+	//return num;
 }
