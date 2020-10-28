@@ -21,7 +21,8 @@ typedef struct {
 	vector<ll> edge;
 } Node;
 
-Node nodes[200001];
+ll visited[TMAX];
+Node nodes[TMAX];
 vector<ll> leafs;
 vector<pll> depths;
 
