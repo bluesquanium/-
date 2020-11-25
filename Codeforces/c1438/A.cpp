@@ -23,12 +23,11 @@ int main(void) {
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
 		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
 
-		cout << ans << '\n';
+		for (ll i = 0; i < N; i++) {
+			cout << 1 << ' ';
+		}
+		cout << '\n';
 	}
 
 	return 0;

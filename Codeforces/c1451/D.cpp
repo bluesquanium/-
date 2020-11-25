@@ -14,7 +14,7 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans, temp;
+ll T, D, K, ans, temp;
 vector<ll> m;
 
 int main(void) {
@@ -22,13 +22,26 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
+		cin >> D >> K;
+
+		for (ll i = 1; i <= D; i++) {
+			if (i * i * K * K * 2 > D * D) {	
+				if (i * i * K * K+ (i - 1) * K * K * (i - 1) > D * D) {
+					ans = 1;
+				}
+				else {
+					ans = 0;
+				}
+				break;
+			}
 		}
 
-		cout << ans << '\n';
+		if (ans) {
+			cout << "Utkarsh\n";
+		}
+		else {
+			cout << "Ashish\n";
+		}
 	}
 
 	return 0;

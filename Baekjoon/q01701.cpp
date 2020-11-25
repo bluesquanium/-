@@ -14,22 +14,38 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans, temp;
-vector<ll> m;
+ll ans;
+string s;
+
+ll GetFailFunction(string s) {
+	ll ret = 0;
+
+	vector<ll> ff;
+	ff.resize(s.size());
+	ll j = 0;
+	for (ll i = 1; i < s.size(); i++) {
+		while (j > 0 && s[i] != s[j]) {
+			j = ff[j - 1];
+		}
+		if (s[i] == s[j]) {
+			ff[i] = ++j;
+			ret = max(ret, j);
+		}
+	}
+
+	return ret;
+}
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> T;
-	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
+	cin >> s;
 
-		cout << ans << '\n';
+	for (ll i = 0; i < s.size(); i++) {
+		ans = max(ans, GetFailFunction(s.substr(i)));
 	}
+
+	cout << ans;
 
 	return 0;
 }

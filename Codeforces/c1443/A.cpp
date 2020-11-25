@@ -10,7 +10,7 @@
 #define ll	long long
 #define pii	pair<int,int>
 #define pll pair<ll, ll>
-#define LINF 0x0fffffffffffffff // ~= 1e18
+#define LINF 0x7fffffffffffffff
 #define INF 0x7fffffff
 using namespace std;
 
@@ -23,12 +23,13 @@ int main(void) {
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
 		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
 
-		cout << ans << '\n';
+		ll cur = N * 4;
+		for (ll i = 0; i < N; i++) {
+			cout << cur << ' ';
+			cur -= 2;
+		}
+		cout << '\n';
 	}
 
 	return 0;

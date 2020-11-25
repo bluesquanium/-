@@ -15,20 +15,32 @@
 using namespace std;
 
 ll T, N, M, ans, temp;
-vector<ll> m;
+ll m[100][100];
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
+		cin >> N >> M;
 		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
+			for (ll j = 0; j < M; j++) {
+				cin >> m[i][j];
+				if (m[i][j] % 2 == 0 && (i + j) % 2 == 1) {
+					m[i][j]++;
+				}
+				else if (m[i][j] % 2 == 1 && (i + j) % 2 == 0) {
+					m[i][j]++;
+				}
+			}
 		}
 
-		cout << ans << '\n';
+		for (ll i = 0; i < N; i++) {
+			for (ll j = 0; j < M; j++) {
+				cout << m[i][j] << ' ';
+			}
+			cout << '\n';
+		}
 	}
 
 	return 0;

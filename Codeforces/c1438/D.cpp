@@ -14,22 +14,19 @@
 #define INF 0x7fffffff
 using namespace std;
 
-ll T, N, M, ans, temp;
+ll N, M, ans, temp;
 vector<ll> m;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> T;
-	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
-		}
-
-		cout << ans << '\n';
+	cin >> N;
+	m.resize(N);
+	for (ll i = 0; i < N; i++) {
+		cin >> m[i];
 	}
+
+	cout << ans;
 
 	return 0;
 }

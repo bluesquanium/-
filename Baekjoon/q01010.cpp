@@ -22,10 +22,18 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
-		cin >> N;
-		m.clear(); m.resize(N);
-		for (ll i = 0; i < N; i++) {
-			cin >> m[i];
+		cin >> N >> M;
+		ans = 1;
+		if (N != M) {
+			if (N > M - N) {
+				N = M - N;
+			}
+			for (ll i = 0; i < N; i++) {
+				ans *= M - i;
+			}
+			for (ll i = 1; i <= N; i++) {
+				ans /= i;
+			}
 		}
 
 		cout << ans << '\n';

@@ -22,13 +22,28 @@ int main(void) {
 	cin.tie(NULL), cout.tie(NULL);
 	cin >> T;
 	for (ll t = 1; t <= T; t++) {
+		ans = 0;
 		cin >> N;
 		m.clear(); m.resize(N);
 		for (ll i = 0; i < N; i++) {
 			cin >> m[i];
 		}
+		sort(m.begin(), m.end());
+		ll prev = m[0];
+		for (ll i = 1; i < N; i++) {
+			if (prev == m[i]) {
+				ans = 1;
+				break;
+			}
+			prev = m[i];
+		}
 
-		cout << ans << '\n';
+		if (ans) {
+			cout << "YES\n";
+		}
+		else {
+			cout << "NO\n";
+		}
 	}
 
 	return 0;

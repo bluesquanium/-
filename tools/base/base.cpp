@@ -10,7 +10,7 @@
 #define ll	long long
 #define pii	pair<int,int>
 #define pll pair<ll, ll>
-#define LINF 0x7fffffffffffffff
+#define LINF 0x0fffffffffffffff // ~= 1e18
 #define INF 0x7fffffff
 using namespace std;
 

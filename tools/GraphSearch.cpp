@@ -35,6 +35,26 @@ void dfs(ll u) {
 	}
 }
 
+// topological_dfs 는 위상정렬에 맞게 방문해야 하는 노드가 앞에서부터 순서대로 저장된다.
+// 엣지들로 연결이 분리된 여러개의 그룹이 생성되어있는 그래프일 경우, 각각의 그룹단위로 
+// 하나씩 방문하고 다른 그룹을 방문하는 것이 아닌, 동시다발적으로 랜덤하게 진행되기에
+// 각 그룹을 따로따로 하나씩 위상정렬 방식으로 방문해야 하는 경우에는 적절하지 않은
+// 방법이다. 
+ll visited[NUMNODE + 1];
+vector<ll> order;
+void topological_dfs(ll x, bool build_topo) {
+	if (visited[x]) {
+		return;
+	}
+	visited[x] = 1;
+	for (auto v : e[x]) {
+		topological_dfs(v, build_topo);
+	}
+	if (build_topo) {
+		order.push_back(x);
+	}
+}
+
 // 이건 템플릿화하기엔 너무 특정 상황을 위한 것이지만,
 // DFS 방식의 좌우 노드수가 맞는 노드를 찾아가기에는 주목할 만한
 // 재귀함수이기에 추가해놓는다. 

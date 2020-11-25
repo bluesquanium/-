@@ -1,13 +1,17 @@
 #include <iostream>
+#include <cmath>
 #include <string>
 #include <cstring>
 #include <vector>
 #include <map>
 #include <queue>
+#include <set>
 #include <algorithm>
 #define ll	long long
 #define pii	pair<int,int>
 #define pll pair<ll, ll>
+#define LINF 0x7fffffffffffffff
+#define INF 0x7fffffff
 using namespace std;
 
 #define MOD 998244353
@@ -28,18 +32,6 @@ void updateInverseModular(int N) {
 	}
 }
 
-void updateFactorial(int N) {
-	f.resize(N + 1);
-	f[0] = f[1] = 1;
-	for(ll i = 2; i <= N; i++) {
-		f[i] = f[i-1] * i % MOD;
-	}
-}
-
-ll Factorial(ll n, ll r) {
-	ll num = (f[n] * rf[n - r]) % MOD;
-	return num;
-}
 
 ll Combination(ll n, ll r) {
 	ll num = 1;
@@ -48,17 +40,34 @@ ll Combination(ll n, ll r) {
 	num = (num * rf[n - r]) % MOD;
 
 	return num;
-	
-	// 나이브한 방법 
-	//ll num = 1;
-	//for (ll i = 1; i <= n; i++) {
-	//	num = (num * i) % MOD;
-	//}
-	//for (ll i = 1; i <= r; i++) {
-	//	num = (num * inv[i]) % MOD;
-	//}
-	//for (ll i = 1; i <= n - r; i++) {
-	//	num = (num * inv[i]) % MOD;
-	//}
-	//return num;
+}
+
+ll N, ans, temp;
+vector<ll> m;
+
+int main(void) {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL), cout.tie(NULL);
+
+	updateInverseModular(300000);
+
+	cin >> N;
+	m.resize(2 * N);
+	for (ll i = 0; i < 2 * N; i++) {
+		cin >> m[i];
+	}
+	sort(m.rbegin(), m.rend());
+	ll sum = 0;
+	ll i = 0;
+	for (; i < N; i++) {
+		sum += m[i];
+	}
+	for (; i < 2 * N; i++) {
+		sum -= m[i];
+	}
+	sum = sum % MOD;
+
+	cout << (sum * Combination(2 * N, N)) % MOD;
+
+	return 0;
 }
