@@ -45,6 +45,7 @@ void Kmp(string s, string pattern) {
 
 		if (s[i] == pattern[j]) {
 			if (j == pattern.size() - 1) {
+				// Match!
 				ans.push_back(i - pattern.size() + 1);
 				j = ff[j];
 			}
