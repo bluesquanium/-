@@ -31,8 +31,6 @@ vector<mType> m[4];
 
 ll originIdxToCurIdx[150000];
 
-const ll NEWINF = 1000000000000;
-
 void cal(ll nFirst, ll nSecond, ll mIdx) {
 	sort(n[nFirst].begin(), n[nFirst].end());
 	for (ll i = 0; i < N[nFirst]; i++) {
@@ -55,7 +53,7 @@ void cal(ll nFirst, ll nSecond, ll mIdx) {
 				n[nSecond][i].first += n[nFirst][cur].first;
 			}
 			else {
-				n[nSecond][i].first = NEWINF;
+				n[nSecond][i].first = INF;
 			}
 		}
 		else {
@@ -71,48 +69,25 @@ void cal(ll nFirst, ll nSecond, ll mIdx) {
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> N[1] >> N[2] >> N[3] >> N[4];
-	n[1].resize(N[1]);
-	n[2].resize(N[2]);
-	n[3].resize(N[3]);
-	n[4].resize(N[4]);
-	for (ll i = 0; i < N[1]; i++) {
-		n[1][i].second = i;
-		cin >> n[1][i].first;
+	for (ll i = 1; i <= 4; i++) {
+		cin >> N[i];
+		n[i].resize(N[i]);
 	}
-	for (ll i = 0; i < N[2]; i++) {
-		n[2][i].second = i;
-		cin >> n[2][i].first;
-	}
-	for (ll i = 0; i < N[3]; i++) {
-		n[3][i].second = i;
-		cin >> n[3][i].first;
-	}
-	for (ll i = 0; i < N[4]; i++) {
-		n[4][i].second = i;
-		cin >> n[4][i].first;
+	for (ll i = 1; i <= 4; i++) {
+		for (ll j = 0; j < N[i]; j++) {
+			n[i][j].second = j;
+			cin >> n[i][j].first;
+		}
 	}
 
-	cin >> M[1];
-	m[1].resize(M[1]);
-	for (ll i = 0; i < M[1]; i++) {
-		cin >> m[1][i].x >> m[1][i].y;
-		m[1][i].x--;
-		m[1][i].y--;
-	}
-	cin >> M[2];
-	m[2].resize(M[2]);
-	for (ll i = 0; i < M[2]; i++) {
-		cin >> m[2][i].x >> m[2][i].y;
-		m[2][i].x--;
-		m[2][i].y--;
-	}
-	cin >> M[3];
-	m[3].resize(M[3]);
-	for (ll i = 0; i < M[3]; i++) {
-		cin >> m[3][i].x >> m[3][i].y;
-		m[3][i].x--;
-		m[3][i].y--;
+	for (ll i = 1; i <= 3; i++) {
+		cin >> M[i];
+		m[i].resize(M[i]);
+		for (ll j = 0; j < M[i]; j++) {
+			cin >> m[i][j].x >> m[i][j].y;
+			m[i][j].x--;
+			m[i][j].y--;
+		}
 	}
 
 	cal(1, 2, 1);
@@ -120,7 +95,7 @@ int main(void) {
 	cal(3, 4, 3);
 
 	sort(n[4].begin(), n[4].end());
-	if (n[4][0].first >= NEWINF) {
+	if (n[4][0].first >= INF) {
 		cout << "-1";
 	}
 	else {
