@@ -20,7 +20,6 @@ public:
 	ll numElement;
 	ll segTreeSize;
 	vector<ll> tree;
-	vector<ll> lazy;
 	vector<ll> treeIdxTable;
 
 	void init(vector<ll> &a) {
@@ -28,7 +27,6 @@ public:
 		ll height = (ll)ceil(log2(numElement));
 		segTreeSize = (1 << (height + 1));
 		tree.resize(segTreeSize, DEFAULT);
-		lazy.resize(segTreeSize, 0);
 		treeIdxTable.resize(numElement);
 
 		initTree(a, 1, 0, numElement - 1);
@@ -38,41 +36,15 @@ public:
 		return queryTree(1, 0, numElement - 1, left, right);
 	}
 
-	void update_range(int treeIdx, int start, int end, int left, int right, long long diff) {
-		update_lazy(treeIdx, start, end);
-		if (left > end || right < start) {
-			return;
-		}
-		if (left <= start && end <= right) {
-			tree[treeIdx] += (end - start + 1)*diff;
-			if (start != end) {
-				lazy[treeIdx * 2] += diff;
-				lazy[treeIdx * 2 + 1] += diff;
-			}
-			return;
-		}
-		update_range(treeIdx * 2, start, (start + end) / 2, left, right, diff);
-		update_range(treeIdx * 2 + 1, (start + end) / 2 + 1, end, left, right, diff);
-		tree[treeIdx] = tree[treeIdx * 2] + tree[treeIdx * 2 + 1];
+	void update(ll index, ll diff) {
+		updateTree(1, 0, numElement - 1, index, diff);
+	}
+
+	void updateFromBottom(ll index, ll diff) {
+		updateTreeFromBottom(convertToTreeIdx(index), diff);
 	}
 
 private:
-	void update_lazy(int treeIdx, int start, int end) {
-		if (lazy[treeIdx] != 0) {
-			tree[treeIdx] += (end - start + 1)*lazy[treeIdx];
-			// leaf가 아니면
-			if (start != end) {
-				if (tree[treeIdx * 2] != DEFAULT) {
-					lazy[treeIdx * 2] += lazy[treeIdx];
-				}
-				if (tree[treeIdx * 2 + 1] != DEFAULT) {
-					lazy[treeIdx * 2 + 1] += lazy[treeIdx];
-				}
-			}
-			lazy[treeIdx] = 0;
-		}
-	}
-
 	ll initTree(vector<ll> &a, ll treeIdx, ll start, ll end) {
 		if (start == end) {
 			treeIdxTable[start] = treeIdx;
@@ -84,7 +56,6 @@ private:
 	}
 
 	ll queryTree(ll treeIdx, ll start, ll end, ll left, ll right) {
-		update_lazy(treeIdx, start, end);
 		if (left > end || right < start) {
 			return 0;
 		}
@@ -94,45 +65,74 @@ private:
 		return cal(queryTree(treeIdx * 2, start, (start + end) / 2, left, right), queryTree(treeIdx * 2 + 1, (start + end) / 2 + 1, end, left, right));
 	}
 
-	inline ll convertToTreeIdx(ll idx) {
+	void updateTree(ll treeIdx, ll start, ll end, ll index, ll diff) {
+		if (index < start || index > end) return;
+		tree[treeIdx] = updateCal(tree[treeIdx], diff);
+		if (start != end) {
+			updateTree(treeIdx * 2, start, (start + end) / 2, index, diff);
+			updateTree(treeIdx * 2 + 1, (start + end) / 2 + 1, end, index, diff);
+		}
+	}
+
+	void updateTreeFromBottom(ll treeIdx, ll diff) {
+		if (treeIdx == 0) {
+			return;
+		}
+
+		if (treeIdx * 2 >= segTreeSize || (treeIdx * 2 < segTreeSize && tree[treeIdx * 2] == DEFAULT)) {
+			tree[treeIdx] = updateCal(tree[treeIdx], diff);
+		}
+		else {
+			if (treeIdx * 2 + 1 < segTreeSize) {
+				tree[treeIdx] = cal(tree[treeIdx * 2], tree[treeIdx * 2 + 1]);
+			}
+			else {
+				tree[treeIdx] = tree[treeIdx * 2];
+			}
+		}
+
+		updateTreeFromBottom(treeIdx / 2, diff);
+	}
+
+	ll convertToTreeIdx(ll idx) {
 		return treeIdxTable[idx];
 	}
 
-	inline ll cal(ll x, ll y) {
+	ll cal(ll x, ll y) {
 		return x + y;
 	}
 
-	inline ll updateCal(ll treeVal, ll diff) {
+	ll updateCal(ll treeVal, ll diff) {
 		return treeVal + diff;
 	}
 } segTree;
 
-ll N, M, K, ans, temp;
+ll N, M, ans, temp;
 vector<ll> m;
 
 int main(void) {
 	ios::sync_with_stdio(false);
 	cin.tie(NULL), cout.tie(NULL);
-	cin >> N >> M >> K;
-	m.resize(N);
-	for (ll i = 0; i < N; i++) {
-		cin >> m[i];
-	}
+	cin >> N >> M;
+	m.resize(N, 0);
 
 	segTree.init(m);
 
-	for (ll q = 0; q < M + K; q++) {
-		ll a, b, c, d;
-		cin >> a;
-		if (a == 1) {
-			cin >> b >> c >> d;
+	for (ll q = 0; q < M; q++) {
+		ll a, b, c;
+		cin >> a >> b >> c;
+		if (a == 0) {
 			b--; c--;
-			segTree.update_range(1, 0, N - 1, b, c, d);
+			if (b > c) {
+				swap(b, c);
+			}
+			cout << segTree.query(b, c) << '\n';
 		}
 		else {
-			cin >> b >> c;
-			b--; c--;
-			cout << segTree.query(b, c) << '\n';
+			b--;
+			segTree.update(b, c - m[b]);
+			//segTree.updateFromBottom(b, c - m[b]);
+			m[b] = c;
 		}
 	}
 

@@ -37,3 +37,20 @@ public:
 		return ret;
 	}
 } bit;
+
+int main(void) {
+	ios::sync_with_stdio(false);
+	cin.tie(NULL), cout.tie(NULL);
+
+	bit.init();
+	bit.add(1, 1);
+	bit.add(2, -1);
+	bit.add(3, 2);
+	bit.add(4, -2);
+	cout << bit.query(1) << '\n'; // 1
+	cout << bit.query(2) << '\n'; // 0
+	cout << bit.query(3) << '\n'; // 2
+	cout << bit.query(4) << '\n'; // 0
+
+	return 0;
+}
