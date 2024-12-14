@@ -20,13 +20,9 @@ void Init() {
 	}
 }
 ll Find(ll x) {
-	// Root인 경우 x를 반환
-	if (x == parent[x]) {
-		return x;
+	if (x != parent[x]) {
+		parent[x] = Find(parent[x]);
 	}
-	
-	// 아니면 Root를 찾아감
-	parent[x] = Find(parent[x]);
 	return parent[x];
 }
 void Union(ll x, ll y) {
